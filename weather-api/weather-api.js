@@ -6,7 +6,7 @@ require('dotenv').config();
 module.exports = {
     //초단기예보
     getUtraSrtFcst : (nx, ny, callback)=>{
-        let url = process.env.API_URL + 'getUltraSrtFcst';
+        let url = process.env.WEATHER_API_URL + 'getUltraSrtFcst';
         let date = new Date();
         let basehour = date.getHours();
         if(date.getMinutes() < 40) basehour--;
@@ -46,7 +46,7 @@ module.exports = {
 
     //단기예보
     getVilageFcst : (nx, ny, callback)=>{
-        let url = process.env.API_URL + 'getVilageFcst';
+        let url = process.env.WEATHER_API_URL + 'getVilageFcst';
         let date = new Date();
         
         let getBaseDateTime = ()=>{
