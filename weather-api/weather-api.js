@@ -40,7 +40,9 @@ module.exports = {
         let params = util.toQueryString(_params);
 
         axios.get(url + params).then((response)=>{
-            callback(response.data.response.body);
+            let ret = null;
+            try{ret = response.data.response.body}catch(e){console.log(response)};
+            callback(ret);
         })
     },
 
@@ -78,7 +80,9 @@ module.exports = {
 
         axios.get(url + params).then((response)=>{
             /* console.log(response.data); */
-            callback(response.data.response.body);
+            let ret = null;
+            try{ret = response.data.response.body}catch(e){console.log(response)};
+            callback(ret);
         })
     }
 }

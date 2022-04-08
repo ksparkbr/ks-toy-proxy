@@ -27,12 +27,22 @@ module.exports = (app) => {
         });
     })
 
+    // 코로나 현황 - 질병청 API
     app.get("/getCovid", (request, response)=>{
-        covidApi.getCovid("20220401", "20220407", (res)=>{
+        const {searchDate} = request.query;
+        let _searchDate = new Date(Date.parse(searchDate));
+        _searchDate.setHours(_searchDate.getHours() + 9); 
+
+        let enddt = _searchDate.toISOString().split("T")[0];
+        _searchDate.setDate(_searchDate.getDate()-60);
+        let startdt = _searchDate.toISOString().split("T")[0];
+
+        covidApi.getCovid(startdt.split('-').join(''), enddt.split('-').join(''), (res)=>{
             response.json(res)
         })
     })
 
+    // 코로나 라이브 현황 - 재난문자 API
     app.get("/getCovidLive", (request, response)=>{
         const {searchDate} = request.query;
         covidLiveApi.covidLive(searchDate, (res)=>{
