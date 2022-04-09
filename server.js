@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const config = require('./config/config')
+const config = require('./src/config/config')
 const bodyParser = require('body-parser');
-const router = require('./router/router')
+const router = require('./src/router/router')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
