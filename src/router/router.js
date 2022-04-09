@@ -1,5 +1,6 @@
 const covidApi = require("../covid-api/covid-api");
 const covidLiveApi = require("../covid-api/covid-live-api");
+const naverApi = require("../naver-api/naver-api");
 const weatherApi = require("../weather-api/weather-api");
 
 module.exports = (app) => {
@@ -46,6 +47,14 @@ module.exports = (app) => {
     app.get("/getCovidLive", (request, response)=>{
         const {searchDate} = request.query;
         covidLiveApi.covidLive(searchDate, (res)=>{
+            response.json(res);
+        })
+    })
+
+    //뉴스검색
+    app.get("/getCyberNews", (request, response)=>{
+        const {keyword} = request.query;
+        naverApi.getCyberNews(keyword, (res)=>{
             response.json(res);
         })
     })
