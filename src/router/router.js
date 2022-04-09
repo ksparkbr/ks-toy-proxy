@@ -54,6 +54,7 @@ module.exports = (app) => {
     //뉴스검색
     app.get("/getCyberNews", (request, response)=>{
         const {keyword} = request.query;
+        console.log(keyword);
         naverApi.getCyberNews(keyword, (res)=>{
             response.json(res);
         })
